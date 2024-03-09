@@ -107,9 +107,31 @@ globals:
 
 # Temperature sensor (Dallas DS18B20) and its update/measurement interval
 dallas:
-  - pin: $dallas_pin
-    update_interval: 5s
-    id: dallas1
+  - id: "DS18B20_a"
+    pin:
+      number: $dallas_pin
+      allow_other_uses: true
+    update_interval: never
+  - id: "DS18B20_b"
+    pin:
+      number: $dallas_pin
+      allow_other_uses: true
+    update_interval: never
+
+# to avoid 1w-sequence overlapping synchronize DS18B20-readings (12bit conversion takes 750ms)
+interval:
+  - interval: 2500ms
+    then:
+      - lambda: !lambda |-
+          static int n = 0;
+          if (n == 0) {
+            id(DS18B20_a).update();   //read outdoor unit heat exchanger temperature
+            n = 1;
+            }
+          else {
+            id(DS18B20_b).update();  //outdoor temperature
+            n = 0;
+            }
 
 # switch component to control defrost prevention relay
 # if switch on --> Relay actively driven
@@ -162,6 +184,7 @@ switch:
 # Copy IDs from terminal log to platform.yaml file and heat one sensor. Then check which sensor it was and use it for the corresponding topic
 sensor:
   - platform: dallas
+    dallas_id: DS18B20_a
     address: $dallas_address_heat_exchanger_temp # Remember to define this on platform.yaml
     name: "Temperature - heat exchanger"
     id: heat_exchanger_temp
@@ -182,6 +205,7 @@ sensor:
             }
 
   - platform: dallas
+    dallas_id: DS18B20_b
     address: $dallas_address_outdoor_temp # Remember to define this on platform.yaml
     name: "Temperature - outdoor"
     id: outdoor_temp
