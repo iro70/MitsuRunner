@@ -21,18 +21,23 @@
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
-# For Mitsurunnwer HW-verification
-# Shows IDs of connected Dallas sensors
+########################################################################################
+# For Wemos based Mitsurunnwer HW-verification
+# Shows IDs of connected Dallas sensors in trace-log
 # Switches relay: 1sec on, 4sec off
 
-<<: !include ../secrets.yaml
+# Update your WiFi-parameters (ssid and password)
+# Set Dallas_pin and Relay_pin to match HW interfaces
 
 esphome:
   name: mitsurunner-hw-check
 # HW-platform
   platform: esp8266
   board: d1_mini
+
+wifi:
+  ssid: "...."
+  password: "...."
 
 # Logs on
 logger:
