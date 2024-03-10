@@ -44,9 +44,18 @@ logger:
 
 # Dallas PIN, change PIN if needed
 dallas:
-  - pin: D7
+  - pin: D3
     update_interval: 10s
-    id: dallas1
+    id: read_dallas
+
+sensor:
+  - platform: dallas
+    index: 0
+    id: read_T0
+
+  - platform: dallas
+    index: 1
+    id: read_T1
 
 # Relay PIN
 switch:
