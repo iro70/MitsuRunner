@@ -23,8 +23,8 @@
 # initialize and define Mitsurunner
 
 esphome:
-  name: mitsurunner
-  friendly_name: Mitsurunner
+  name: $Device_name
+  friendly_name: $Device_name
   
   on_boot: 
   - switch.turn_off: gpio_relay
@@ -261,6 +261,9 @@ sensor:
             case ST_RESET:
                 // Wait first that sensors has read some values.
                 if (G_state_time_passed) {
+                   if (!id(outdoor_temp).has_state() || !id(heat_exchanger_temp).has_state()) {
+                       break;
+                   }
               // If outdoor temperature average exceeds the threshold or Mitsurunner is disabled, switch off the defrost hack logic
                     if (id(heat_exchanger_temp).state > HEAT_EXCHANGER_MAX_TEMPERATURE ||
                         id(outdoor_temp).state > OUTDOOR_TEMPERATURE_TO_ENTER_OFF_STATE ||
