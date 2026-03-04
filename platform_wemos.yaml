@@ -56,7 +56,7 @@ substitutions:
 
 # Common reboot timeout for WiFi, MQTT and HomeAssiant. Change value if needed.
 
-  common_reboot_timeout: '360min'
+  common_reboot_timeout: '600min'
 
 # Addresses for your Dallas DS18B20 temperature sensors - you need to update these
   dallas_address_heat_exchanger_temp: '0x0000000000000000'
@@ -67,5 +67,14 @@ substitutions:
   relay_pin:  'D1' # Pin for controlling relay
   dallas_power_pin: 'D4' # Built-in LED
 
+##########################################
+
+text_sensor: 
+  - platform: template   ## software version 
+    name: "_Firmware version"
+    icon: mdi:tag
+    lambda: |-
+      return {"${fw_version}"};
+      
 
 
