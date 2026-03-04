@@ -88,9 +88,6 @@ switch:
     internal: true
     id: red_led
 
-  - platform: factory_reset
-    id: factrst
-
 output:
   - platform: gpio
     pin: GPIO13
@@ -104,7 +101,6 @@ output:
 
 ##########################################################################
 
-
 interval:
   - interval: 1000ms
     then:
@@ -113,7 +109,7 @@ interval:
           if (id(gpio_relay).state) id(green_led).turn_on();    //Green LED ON if defrost_prevention_Relay is ON
             else id(green_led).turn_off();
 
-          if (wifi::global_wifi_component->is_ap_active() || id(fact_rst) == true) id(blue_led).turn_on();
+          if (wifi::global_wifi_component->is_ap_active()) id(blue_led).turn_on();
             else id(blue_led).turn_off();
 
           if (wifi::global_wifi_component->is_connected()) {
@@ -173,7 +169,6 @@ text_sensor:                ## last part of ip-adderss
       return {"${fw_version}"};
 
 ##########################################################################
-
 sensor:
   - platform: template
     id: ip_last
@@ -185,40 +180,5 @@ sensor:
         id(ip_address).state.find_last_of('.') + 1).c_str());
       return last;
     update_interval: 60s
-
+    
 ########################################################################
-# Pakotettu AP-aktivointi napin painalluksella, ei toimi luotettavasti,
-# AP-aktivointikomento kommentoitu pois
-########
-
-globals:
-  - id: fact_rst
-    type: bool
-    restore_value: "false"
-    initial_value: "false"
-
-
-# 3. If THR316D button pressed > 10s clear SSID ==> AP-activation
-binary_sensor:
-  - platform: gpio
-    pin: GPIO0     # THR316D button
-    id: gpio0_input
-    name: "GPIO0 Input"
-    internal: true
-    filters:
-      - invert:        # LOW → ON
-      - delayed_on: 5s
-    on_press:
-      then:
-        - lambda: |-
-            id(fact_rst) = true;
-            id(blue_led).turn_on();
-            delay(2000);
-            id(fact_rst) = false;
-
- #       - switch.turn_on: factrst    ### komento poistettu
-  
-
-
-
-
