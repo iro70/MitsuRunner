@@ -72,6 +72,9 @@ globals:
   - id: G_manual_defrosting
     type: bool
     initial_value: 'false'
+  - id: out_t_coefficient
+    type: int
+    initial_value: '0'
 
 # global constants
   - id: G_TOPIC_STATE
@@ -593,7 +596,7 @@ script:
         //**id(mqtt_client).publish(id(G_TOPIC_FORCE_DEFROST_TIMER_STATE), to_string(TMR_NOT_PASSED)); // #To indicate restarts
         //**id(mqtt_client).publish(id(G_TOPIC_FORCE_DEFROST_TIMER_STATE), to_string(TMR_RUNNING));
         id(G_max_heating_time_passed) = false;
-    - delay: !lambda "return MAX_HEATING_TIME * 60000;"
+    - delay: !lambda "return (MAX_HEATING_TIME + id(out_t_coefficient)) * 60000;"
     - lambda: !lambda |-
         //**id(mqtt_client).publish(id(G_TOPIC_FORCE_DEFROST_TIMER_STATE), to_string(TMR_PASSED)); 
         id(G_max_heating_time_passed) = true;
