@@ -35,8 +35,8 @@
 #### Select HW platform related file and check/update details to the file ####
 ##############################################################################
 
-<<: !include platform_wemos.yaml
-#<<: !include platform_elite.yaml
+<<: !include platform_wemos.yaml        ## Take this for Wemos
+#<<: !include platform_elite.yaml       ## Take this for Sonoff Elite (THR316D)
 
 ###############################################
 
@@ -46,7 +46,8 @@ packages:
 #### ! UPDATE WiFi-DETAILS to the file  !   ####
 ################################################
 
-  wifi_base: !include secrets.yaml              ## WifI needed
+  wifi_base: !include secrets.yaml              ##  Take this for Wemos
+#  wifi_base: !include secrets_elite.yam         ## Take this for Sonoff Elite (THR316D)
 #  wifi_base: !include secrets_sa.yaml          ## Stadalone mode, Wifi will be disable, only for Wemos
 
 ################################################
@@ -86,6 +87,7 @@ esphome:
   includes:
     - constants.h
     - state.h
+
 
 
 
