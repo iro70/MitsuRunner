@@ -52,10 +52,8 @@ esp32:
 ###########################################################################
 substitutions:
 
-  Device_name: 'mitsurunner'
-
 # Sw_version, Update !
-  fw_version: "xxxxx_yyyyy"  
+  fw_version: "2026_a_pre"  
 
 # Common reboot timeout for WiFi, MQTT and HomeAssiant. Change value if needed.
   common_reboot_timeout: '600min'
