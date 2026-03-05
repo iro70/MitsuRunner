@@ -49,10 +49,8 @@ esp8266:               # For Wemos
 
 substitutions:
 
-  Device_name: 'mitsurunner' ##change name if needed
-
   # Sw_version, Update !
-  fw_version: "xxxx_yyyy_zzzz"  
+  fw_version: "2026_a_pre"  
 
 # Common reboot timeout for WiFi, MQTT and HomeAssiant. Change value if needed.
 
