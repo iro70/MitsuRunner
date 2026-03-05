@@ -74,7 +74,7 @@ packages:
 ############################################################
 
   heating_base: !include heating_cycle.yaml          ## measures and displays the lengths of previous heating periods
-  h_timeout_base: !include heating_timeout.yaml      ## heating period timeout based on outdoor temperature
+  h_timeout_base: !include adaptive_heating_timeout.yaml      ## heating period timeout based on outdoor temperature
 
 ######################################################
 #### Mitsurunner core code, Do not touch!!        ####
@@ -87,6 +87,7 @@ esphome:
   includes:
     - constants.h
     - state.h
+
 
 
 
