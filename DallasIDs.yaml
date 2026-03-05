@@ -1,7 +1,9 @@
-######################################################################################################
-# For USB download, update the WiFi SSID, Wifi password, and Dallas PIN
-# For OTA download, update the OTA parameters according to the parameters of the target ESP device
-######################################################################################################
+##############################################################################################
+##       This yaml code allows you to see the IDs of connected DS18B20 sensors on WEB-view  ##
+##############################################################################################
+# 
+# Update the WiFi SSID, Wifi password, and Dallas PIN
+######################################################
 
 esphome:
   name: mitsurunner                    # update in case of OTA-download
@@ -104,3 +106,4 @@ button:
 
               idx++;
             }
+
