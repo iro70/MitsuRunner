@@ -23,8 +23,8 @@
 # initialize and define Mitsurunner
 
 esphome:
-  name: $Device_name
-  friendly_name: $Device_name
+  name: mitsurunner
+  friendly_name: Mitsurunner
   
   on_boot: 
   - switch.turn_off: gpio_relay
