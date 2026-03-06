@@ -50,7 +50,7 @@ esp8266:               # For Wemos
 substitutions:
 
   # Sw_version, Update !
-  fw_version: "2026_a_pre"  
+  fw_version: "2026_1"  
 
 # Common reboot timeout for WiFi, MQTT and HomeAssiant. Change value if needed.
 
