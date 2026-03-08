@@ -33,6 +33,9 @@
 
 ##############################################################################
 #### Select HW platform related file and check/update details to the file ####
+####   * DS18B20 IDs, GPIO-pins                                           ####
+####   * log-level (DEBUG, INFO,...)                                      ####
+####   * enable/disable Homeassistant api                                 ####                        
 ##############################################################################
 
 <<: !include platform_wemos.yaml        ## Take this for Wemos
@@ -57,7 +60,6 @@ packages:
 
 #  dallas_base: !include dallas_basic.yaml           ## basic-configuration
   dallas_base: !include dallas_hub.yaml              ## minimize restarts
-#  dallas_base: !include dallas_hub_status_Led.yaml  ## dallas_hub.yaml with on-board status_LED (only for Wemos)
 
 ############################################################
 #### Select used MQTT-server                            ####
@@ -87,6 +89,7 @@ esphome:
   includes:
     - constants.h
     - state.h
+
 
 
 
