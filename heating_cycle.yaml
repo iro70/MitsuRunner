@@ -39,7 +39,7 @@ globals:
   - id: heating_history
     type: int[9]
     restore_value: no
-    initial_value: '{0,0,0,0,0,0,0,0,0,0}'
+    initial_value: '{0,0,0,0,0,0,0,0,0}'
 
   - id: heating_active
     type: bool
