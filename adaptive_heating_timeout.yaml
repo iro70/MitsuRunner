@@ -32,13 +32,13 @@ sensor:
   - platform: template
     id: MaxHeatingTime
     name: "MaxHeatingTime"
-    unit_of_measurement: "min "
+    unit_of_measurement: "min"
     update_interval: 60s
     lambda: |-
         if (isnan(id(outdoor_temp).state)) id(out_t_coefficient) = 0;           // outdoor temp value missing ==> default (3h)
-        else if (id(outdoor_temp).state > -10.0) id(out_t_coefficient) = 180;   // above -10C ==> default + 180min (6h)
-        else if (id(outdoor_temp).state < -20.0) id(out_t_coefficient) = 0;     // below -20C ==> default
-        else id(out_t_coefficient) =90;                                         // between -10C and -20C ==> default + 90min (4.5h
+        else if (id(outdoor_temp).state >= -10.0) id(out_t_coefficient) = 180;   // above -10C ==> default + 180min (6h)
+        else if (id(outdoor_temp).state <= -20.0) id(out_t_coefficient) = 0;     // below -20C ==> default
+        else id(out_t_coefficient) =90;                                         // between -10C and -20C ==> default + 90min (4.5h)
 
         return MAX_HEATING_TIME + id(out_t_coefficient);
 
