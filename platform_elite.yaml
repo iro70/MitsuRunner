@@ -113,7 +113,7 @@ interval:
           if (wifi::global_wifi_component->is_connected()) {
             id(red_led).turn_on();       // when WiFi-connected ==>  red-led is ON
           } else {
-            id(red_led).toggle();        // whwen WiFi is not connected ==> red-led blinks
+            id(red_led).toggle();        // when WiFi is not connected ==> red-led blinks
           }
 
 display:
@@ -131,9 +131,9 @@ display:
 
     n = n+1;   
     if ((n == 1) || (n == 2)|| (n == 4)|| (n == 5)) {
-       it.printf(0, "%.1f", id(heat_exchanger_temp).state);
+       it.printf(0, "%d", id(heat_exchanger_temp_errors));
        it.display_celsius(true);
-       it.printf(1, "%.1f", id(outdoor_temp).state);
+       it.printf(1, "%d", id(outdoor_temp).state);
        it.display_humidity(false);
        return;
        }
@@ -153,7 +153,7 @@ display:
        }
 
 ##########################################################################
-text_sensor:                ## last part of ip-adderss
+text_sensor:                ## last part of ip-address
   - platform: wifi_info
     ip_address:
       name: "IP-osoite"
