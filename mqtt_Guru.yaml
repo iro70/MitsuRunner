@@ -65,8 +65,8 @@ substitutions:
   topic_outdoor:                        '"$prefix/ulkoilma"'
   topic_delta:                          '"$prefix/delta"'
   topic_rssi:                           '"$prefix/rssi"'
-  topic_outdoor_errors:                 '"$prefix/kennovirhe"'
-  topic_exchanger_errors:               '"$prefix/ulkovirhe"'
+  topic_outdoor_errors:                 '"$prefix/ulkovirhe"'
+  topic_exchanger_errors:               '"$prefix/kennovirhe"'
   topic_state:                          '"$prefix/tila"'
   topic_uptime:                         '"$prefix/uptime"'
 
@@ -120,6 +120,7 @@ interval:
           // G_state
           value_accuracy_to_buf(span_buf, id(G_state), 0);
           id(mqtt_client).publish($topic_state, buf);
+
 
 
 
