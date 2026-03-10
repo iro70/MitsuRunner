@@ -90,9 +90,3 @@ esphome:
     - constants.h
     - state.h
     
-
-
-
-
-
-
