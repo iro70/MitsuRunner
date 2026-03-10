@@ -128,21 +128,28 @@ display:
   write_pin: GPIO18
   lambda: |-
     static int n = 0;
-
+    
     n = n+1;   
     if ((n == 1) || (n == 2)|| (n == 4)|| (n == 5)) {
-       it.printf(0, "%d", id(heat_exchanger_temp).state);
+       it.printf(0, "%.1f", id(heat_exchanger_temp).state);
        it.display_celsius(true);
-       it.printf(1, "%d", id(outdoor_temp).state);
+       it.printf(1, "%.1f", id(outdoor_temp).state);
        it.display_humidity(false);
        return;
        }
     if (n == 3) {
-       it.printf(0,"%d", id(heat_exchanger_temp_errors));   
+       it.printf(0,"%.1i", id(heat_exchanger_temp_errors));   
        it.display_celsius(false);
-       it.printf(1,"%d", id(outdoor_temp_errors));
+       it.printf(1,"%.1i", id(outdoor_temp_errors));
        it.display_humidity(false);
        return;
+       }
+    if (n == 6) {
+       n = 0;
+       it.printf(0, "%.1f", id(wifi_signal_dbm).state);
+       it.display_celsius(false);
+       it.printf(1,"%3.0f", id(ip_last).state);    
+       it.display_humidity(false);
        }
     if (n == 6) {
        n = 0;
