@@ -27,7 +27,7 @@
 ##   --------------------------------------------------------   ##
 ## Select modules of your Mitsurunner configuration             ## 
 ##  * either by commenting (#) not needed modules away          ##
-##    or deleting rows of not neeed modules away                ##
+##    or deleting rows of not need modules away                ##
 ##################################################################
 
 
@@ -51,7 +51,7 @@ packages:
 
   wifi_base: !include secrets.yaml              ##  Take this for Wemos
 #  wifi_base: !include secrets_elite.yaml       ## Take this for Sonoff Elite (THR316D)
-#  wifi_base: !include secrets_sa.yaml          ## Stadalone mode, Wifi will be disable, only for Wemos
+#  wifi_base: !include secrets_sa.yaml          ## Standalone mode, Wifi will be disable, only for Wemos
 
 ################################################
 #### Select configuration of Dallas sensors ####
@@ -89,9 +89,7 @@ esphome:
   includes:
     - constants.h
     - state.h
-
-
-
+    
 
 
 
