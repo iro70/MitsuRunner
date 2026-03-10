@@ -37,7 +37,7 @@ globals:
     initial_value: '0'
 
   - id: heating_history
-    type: int[10]
+    type: int[9]
     restore_value: no
     initial_value: '{0,0,0,0,0,0,0,0,0,0}'
 
@@ -117,12 +117,12 @@ text_sensor:
   - platform: template
     name: "Previous heating cycles"
     id: cycle_and_length
-    disabled_by_default: true # do not send to HomeAssitant
+    disabled_by_default: true # do not send to HomeAssistant
     update_interval: never
     lambda: |-
       char buffer[32];
-      int index = id(display_index);     // 0–4
-      int human_index = index + 1;          // 1–5
+      int index = id(display_index);     // 0–8
+      int human_index = index + 1;          // 1–9
       int minutes = id(heating_history)[index];
 
       int hours = minutes / 60;
